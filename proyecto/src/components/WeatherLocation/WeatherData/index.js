@@ -4,7 +4,7 @@ import WeatherExtraInfo from './WeatherExtraInfo';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const WeatherData = () => {
+const WeatherData = ({data}) => {
 const { temperature, weatherState, humidity, wind } = data;
 
 return (
