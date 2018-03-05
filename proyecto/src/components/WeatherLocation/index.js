@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
+import transformWeather from './../../services/transformWeather';
+// import './styles.css';
 import {CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY} from './../../constant/weathers';
 
 const api_key = "631deffc7b3dc563f3a19aea3aa586d2";
@@ -31,7 +33,8 @@ class WeatherLocation extends Component {
       data: data1
     }
   }
-
+  // Esto se va al archivo transformWeather
+  /*
   getWeatherState = weather => {
     return SUN;
   }
@@ -49,13 +52,14 @@ class WeatherLocation extends Component {
     }
     return data;
   }
+  */
 
   handleUpdateClick = () => {
     fetch(api_weather).then(data => {
       console.log(data);
       return data.json();
     }).then(weather_data => {
-      const data = this.getData(weather_data);
+      const data = transformWeather(weather_data);
       this.setState({data})
       console.log(weather_data);
     })
@@ -63,6 +67,12 @@ class WeatherLocation extends Component {
 
     console.log('actualizado');
   }
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+
   render = () => {
     const {city, data} = this.state;
     return(
